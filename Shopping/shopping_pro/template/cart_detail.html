@@ -1,0 +1,104 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block metadescription %}
+  The area that shows product in your cart
+{% endblock %}
+{% block title %}
+
+BuyIt limited
+
+{% endblock %}
+
+{% block body %}
+
+{% if not cart_item %}
+<div class="text-center">
+    <p class="text-center">No Products are available in your cart</p>
+</div>
+<div class="text-center">
+    <a href="{% url 'shopping_app:home' %}" class="=btn btn-secondary">Continue Shopping</a>
+
+</div>
+{% else %}
+<div>
+
+    <h3 class="text-center"></h3>
+
+   </div>
+      <div class="row mx-auto">
+          <div class="col-md-6">
+        <table class="table mytable">
+            <thead>
+            <tr>
+                <th colspan="5" class="text-center">
+                  Your Items
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in cart_item %}
+            <tr>
+                <td>
+                    <a href="{{i.product.get_absolute_url}}"><img src="{{i.prod.image.url}}" alt="{{i.product.name}}" height="150x" width="150px"></a>
+                </td>
+                <td>
+                    {{i.prod.name}}<br>
+                    Price: Rs.{{i.prod.price}}<br>
+                    Quantity:{{i.quantity}}
+                </td>
+                <td>
+                    {{i.sub_total}}
+                </td>
+                {% if i.quantity < i.prod.stock %}
+                <td>
+                    <a href="{% url 'cartapp:add_cart' i.prod.id %}"><i class="fa-regular fa-plus"></i></a>&nbsp;
+                    <a href="{% url 'cartapp:remove' i.prod.id %}"><i class="fa-regular fa-minus"></i></a>&nbsp;
+                    <a href="{% url 'cartapp:delete' i.prod.id %}"><i class="fa-sharp fa-solid fa-trash"></i></a>
+                </td>
+                {% else %}
+                <td>
+
+                    <a href="{% url 'cartapp:remove' i.prod.id %}"><i class="fa-regular fa-minus"></i></a>&nbsp;
+                    <a href="{% url 'cartapp:delete' i.prod.id %}"><i class="fa-sharp fa-solid fa-trash"></i></a>
+                </td>
+              {% endif %}
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+          </div>
+      <div class="col-md-6">
+          <table class="table mytable">
+              <thead>
+              <tr>
+                  <th class="text-center">
+                      Checkout
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                  <td class="text-center">
+                      Please review your shopping cart items before paying
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <p class="text-center"><strong>Your total price is :</strong>{{total}}</p><br>
+                      <div style="text-align: center;">
+                  <a href="{% url 'shopping_app:home' %}" class="btn btn-primary ">Continue Shopping</a>
+                      </div>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+
+
+
+      </div>
+
+{% endif %}
+
+{% endblock %}

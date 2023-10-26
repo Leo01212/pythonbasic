@@ -1,0 +1,45 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block metadescription %}
+  {{pro.desc}}
+{% endblock %}
+{% block title %}
+
+  {{pro.name}}
+
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{pro.image.url}}" alt="{{pro.name}}" width="400px" height="400px" class="im">
+        </div>
+
+        <div class="col-md-6">
+            <div class="prod">
+                <br><br><br>
+                <h4 >{{pro.name}}</h4>
+                <h6>Rs.{{pro.price}}</h6>
+                <h6>Product Description</h6>
+                <p class="text-justify">{{pro.desc}}</p>
+            </div>
+            <div>
+                {% if pro.stock <= 0 %}
+                    <h6><b>Out of Stock</b></h6>
+                {% else %}
+                    <a href="{% url 'cartapp:add_cart' pro.id %}" class="btn btn-secondary">Add to Cart</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

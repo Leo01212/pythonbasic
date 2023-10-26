@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block metadescription %}
+  {{pro.desc}}
+{% endblock %}
+{% block title %}
+
+  {{pro.name}}
+
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <p>The search results for {{query}} is below</p>
+        {% for pro in products %}
+        <div class=" col-md-4 mb-4">
+            <div class="card p-3 shadow" style="width: 18rem;">
+                <a href="{{pro.get_url}}">
+                    <img src="{{pro.image.url}}" alt="{{pro.name}}" width="250px" height="200px">
+                </a>
+                <div class="card-body">
+                    <h4 class="text-center">{{pro.name}}</h4>
+                    <h6 class="text-center">Rs.{{pro.price}}</h6>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center">No results are found</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+    {% endblock %}

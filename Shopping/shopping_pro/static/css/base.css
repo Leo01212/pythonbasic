@@ -1,0 +1,44 @@
+.nav-item{
+   letter-spacing: .2em;
+   font-size: 14px;
+   text-transform: uppercase;
+   }
+
+ .dropdown-item{
+   letter-spacing: .2em;
+   font-size: 14px;
+   text-transform: uppercase;
+   }
+
+ body{
+ font-family: 'Playpen Sans', cursive;
+ }
+
+ .head{
+   background-color:#faf0e6;
+   height:100px;
+   }
+
+.foo{
+   background-color:#faf0e6;
+   height:100px;
+   }
+.card{
+  height:400px;
+ }
+
+ .prod{
+ letter-spacing: .2em;
+   font-size: 14px;
+   text-transform: uppercase;
+   padding-left:10px;
+}
+
+.im{
+padding:30px;
+}
+
+.mytable{
+min-width:400px;
+font-size:14px;
+}
